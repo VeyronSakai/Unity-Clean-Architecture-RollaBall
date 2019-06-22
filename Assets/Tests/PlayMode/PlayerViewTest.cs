@@ -7,19 +7,47 @@ using Zenject;
 
 namespace Tests
 {
+    [TestFixture]
     public class PlayerViewTest : ZenjectIntegrationTestFixture
     {
-        GameObject playerObject;
-        PlayerView playerView;
-        Vector3 pos;
+        GameObject playerPrefab;
+        IPlayerView playerView;
+        IPlayerView playerViewInstance;
+        IFactory<IPlayerView> playerPrefabFactory;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            playerObject = new GameObject();
-            playerObject.transform.position = new Vector3(0, 1, 0);
-            playerObject.AddComponent<PlayerView>();
-            playerView = playerObject.GetComponent<PlayerView>();
+
+        [SetUp]
+        public void SetUp(){
+
+            PreInstall();
+
+            playerPrefab = new GameObject();
+            playerView = playerPrefab.AddComponent<PlayerView>();
+
+            Container
+                .BindIFactory<IPlayerView>()
+                .To<PlayerView>()
+                .FromComponentInNewPrefab(playerPrefab);
+
+            Container
+                .Bind<IPlayerView>()
+                .To<PlayerView>()
+                .AsTransient();
+
+            playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
+
+            PostInstall();
+        }
+
+        [Test]
+        public void InitializeTest(){
+
+            Assert.IsNotNull(playerPrefabFactory);
+            Assert.IsNull(playerViewInstance);
+            playerViewInstance = playerPrefabFactory.Create();
+            Assert.IsNotNull(playerViewInstance);
+
+            Assert.AreEqual(new Vector3(0,1,0),playerViewInstance.Tr.position);
         }
 
         // A Test behaves as an ordinary method
@@ -27,25 +55,11 @@ namespace Tests
         public void UpdatePositionTest()
         {
             // Use the Assert class to test conditions
-            Assert.AreEqual(new Vector3(0, 1, 0), playerObject.transform.position);
-
-            pos = new Vector3(1, 1, 1);
-            playerView.UpdatePosition(pos);
-            Assert.AreEqual(pos, playerObject.transform.position);
-
-            pos = new Vector3(2, 1, 1);
-            playerView.UpdatePosition(pos);
-            Assert.AreEqual(2, playerObject.transform.position.x);
-        }
-
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator PlayerViewTestWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            playerViewInstance = playerPrefabFactory.Create();
+            playerViewInstance.UpdatePosition(new Vector3(1,1,0));
+            Assert.AreEqual(1,playerViewInstance.Tr.position.x);
+            playerViewInstance.UpdatePosition(new Vector3(2,1,2));
+            Assert.AreEqual(new Vector3(2,1,2),playerViewInstance.Tr.position);
         }
     }
 }
