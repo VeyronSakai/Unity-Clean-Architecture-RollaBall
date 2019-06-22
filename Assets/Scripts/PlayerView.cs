@@ -8,15 +8,11 @@ public class PlayerView : MonoBehaviour, IPlayerView
     private Transform tr;
     public Transform Tr => tr;
 
-    //private void Awake()
-    //{
-    //    tr = this.GetComponent<Transform>();
-    //}
-
     [Inject]
-    private void Construct()
+    private void Initialize()
     {
         tr = this.GetComponent<Transform>();
+        UpdatePosition(new Vector3(0,1,0));
     }
 
     //Transformの更新
