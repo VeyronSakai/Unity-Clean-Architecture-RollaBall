@@ -22,7 +22,7 @@ namespace Tests
             PreInstall();
 
             playerPrefab = new GameObject();
-            playerView = playerPrefab.AddComponent<PlayerView>();
+            playerPrefab.AddComponent<PlayerView>();
 
             Container
                 .BindIFactory<IPlayerView>()
