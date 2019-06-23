@@ -49,7 +49,7 @@ namespace Tests
             Assert.AreEqual(new Vector3(1, 1, 0), playerView.Tr.position);
 
             playerPresenter.UpdatePlayerPosition(new Vector3(2, 1, 2));
-            Assert.AreEqual(new Vector3(2, 1, 2), playerPresenter.Tr);
+            Assert.AreEqual(new Vector3(2, 1, 2), playerPresenter.Tr.position);
         }
     }
 }

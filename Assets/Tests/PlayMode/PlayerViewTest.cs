@@ -9,7 +9,6 @@ using Presentation.Presenter;
 
 namespace Tests
 {
-    [TestFixture]
     public class PlayerViewTest : ZenjectIntegrationTestFixture
     {
         GameObject playerPrefab;
