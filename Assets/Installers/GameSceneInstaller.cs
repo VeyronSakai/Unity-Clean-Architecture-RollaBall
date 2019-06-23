@@ -1,5 +1,7 @@
 using UnityEngine;
 using Zenject;
+using Presentation.View;
+using Presentation.Presenter;
 
 public class GameSceneInstaller : MonoInstaller
 {
