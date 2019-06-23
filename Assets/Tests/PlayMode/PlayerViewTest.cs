@@ -4,6 +4,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Zenject;
+using Presentation.View;
+using Presentation.Presenter;
 
 namespace Tests
 {
