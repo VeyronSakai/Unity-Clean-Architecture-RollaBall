@@ -34,9 +34,9 @@ namespace Tests
                 .To<PlayerView>()
                 .AsTransient();
 
-            playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
-
             PostInstall();
+
+            playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
         }
 
         [Test]
