@@ -20,6 +20,11 @@ namespace Presentation.View
         public void UpdatePosition(Vector3 pos){
             this.tr.position = pos;
         }
+
+        public void DestroyPlayer()
+        {
+            Destroy(this);
+        }
     }
 }
 
