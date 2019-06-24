@@ -10,5 +10,6 @@ namespace Domain.UseCase
         Transform Tr { get; }
         IPlayerView CreatePlayer();
         void UpdatePlayerPosition(Vector3 pos);
+		void DestroyPlayer();
     }
 }

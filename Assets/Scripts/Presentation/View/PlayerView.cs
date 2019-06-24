@@ -23,7 +23,7 @@ namespace Presentation.View
 
         public void DestroyPlayer()
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
