@@ -20,5 +20,10 @@ namespace Presentation.Presenter
         public void UpdatePlayerPosition(Vector3 pos){
             playerView.UpdatePosition(pos);
         }
+
+        public void DestroyPlayer()
+        {
+            playerView.DestroyPlayer();
+        }
     }
 }
