@@ -8,6 +8,7 @@ namespace Presentation.View
         private Transform tr;
         public Transform Tr => tr;
 
+        // PlayerViewインスタンス生成時に自動的に実行される
         [Inject]
         private void Initialize()
         {
