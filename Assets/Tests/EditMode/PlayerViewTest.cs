@@ -11,15 +11,10 @@ namespace Tests
 {
     public class PlayerViewTest : ZenjectUnitTestFixture
     {
-        GameObject playerPrefab;
-        IPlayerView playerView;
-        IPlayerView playerViewInstance;
-        IFactory<IPlayerView> playerPrefabFactory;
-
         [SetUp]
         public void SetUp()
         {
-            playerPrefab = new GameObject();
+            GameObject playerPrefab = new GameObject();
             playerPrefab.AddComponent<PlayerView>();
 
             Container
@@ -31,17 +26,14 @@ namespace Tests
                 .Bind<IPlayerView>()
                 .To<PlayerView>()
                 .AsTransient();
-
-            playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
         }
 
         [Test]
         public void InitializeTest()
         {
-
+            var playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
             Assert.IsNotNull(playerPrefabFactory);
-            Assert.IsNull(playerViewInstance);
-            playerViewInstance = playerPrefabFactory.Create();
+            var playerViewInstance = playerPrefabFactory.Create();
             Assert.IsNotNull(playerViewInstance);
 
             Assert.AreEqual(new Vector3(0, 1, 0), playerViewInstance.Tr.position);
@@ -51,8 +43,8 @@ namespace Tests
         [Test]
         public void UpdatePositionTest()
         {
-            // Use the Assert class to test conditions
-            playerViewInstance = playerPrefabFactory.Create();
+            var playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
+            var playerViewInstance = playerPrefabFactory.Create();
             playerViewInstance.UpdatePosition(new Vector3(1, 1, 0));
             Assert.AreEqual(1, playerViewInstance.Tr.position.x);
             playerViewInstance.UpdatePosition(new Vector3(2, 1, 2));
