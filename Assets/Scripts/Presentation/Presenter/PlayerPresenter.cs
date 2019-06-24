@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Zenject;
+using UniRx;
 using Domain.UseCase;
 
 namespace Presentation.Presenter
@@ -9,6 +10,7 @@ namespace Presentation.Presenter
         private IPlayerView playerView;
 
         public Transform Tr => playerView.Tr;
+        public IReadOnlyReactiveProperty<Transform> TransformProperty => playerView.TransformProperty;
 
         [Inject] IFactory<IPlayerView> playerViewFactory;
 
