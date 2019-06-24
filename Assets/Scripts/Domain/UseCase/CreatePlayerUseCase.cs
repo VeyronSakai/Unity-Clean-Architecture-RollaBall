@@ -10,6 +10,8 @@ namespace Domain.UseCase
 
         void IInitializable.Initialize()
         {
+            // 開始時にPlayerを生成
+
             playerPresenter.CreatePlayer();
         }
     }
