@@ -5,21 +5,24 @@ using Domain.UseCase;
 
 namespace Presentation.Presenter
 {
-    public class PlayerPresenter : IPlayerPresenter{
-
+    public class PlayerPresenter : IPlayerPresenter
+	{
         private IPlayerView playerView;
 
-        public Transform Tr => playerView.Tr;
-        public IReadOnlyReactiveProperty<Transform> TransformProperty => playerView.TransformProperty;
+        public Vector3 PlayerPosition => playerView.PlayerPostion;
+
+        public IReadOnlyReactiveProperty<Vector3> PlayerPositionProperty => playerView.PlayerPositionProperty;
 
         [Inject] IFactory<IPlayerView> playerViewFactory;
 
-        public IPlayerView CreatePlayer(){
+        public IPlayerView CreatePlayer()
+        {
             playerView =  playerViewFactory.Create();
             return playerView;
         }
 
-        public void UpdatePlayerPosition(Vector3 pos){
+        public void UpdatePlayerPosition(Vector3 pos)
+        {
             playerView.UpdatePosition(pos);
         }
 

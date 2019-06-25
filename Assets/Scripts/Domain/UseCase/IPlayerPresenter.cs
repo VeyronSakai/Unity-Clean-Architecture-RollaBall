@@ -6,8 +6,8 @@ namespace Domain.UseCase
 {
     public interface IPlayerPresenter
     {
-        Transform Tr { get; }
-        IReadOnlyReactiveProperty<Transform> TransformProperty { get; }
+        Vector3 PlayerPosition { get; }
+        IReadOnlyReactiveProperty<Vector3> PlayerPositionProperty { get; }
         IPlayerView CreatePlayer();
         void UpdatePlayerPosition(Vector3 pos);
 		void DestroyPlayer();
