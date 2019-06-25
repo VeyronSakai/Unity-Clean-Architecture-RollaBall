@@ -15,7 +15,6 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-
             PreInstall();
 
             GameObject playerPrefab = new GameObject();

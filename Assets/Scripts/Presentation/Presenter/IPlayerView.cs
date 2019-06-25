@@ -8,5 +8,6 @@ namespace Presentation.Presenter
         Vector3 PlayerPostion { get; }
         void UpdatePosition(Vector3 pos);
         void DestroyPlayer();
+        void Move(Vector3 direction);
     }
 }
