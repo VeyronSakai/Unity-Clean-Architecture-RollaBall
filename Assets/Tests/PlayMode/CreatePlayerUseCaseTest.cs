@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Zenject;
+using UniRx;
 using Domain.UseCase;
 using Presentation.View;
 using Presentation.Presenter;
@@ -46,8 +47,6 @@ namespace Tests
         [Test]
         public void CreatePlayerUseCaseSimplePasses()
         {
-            // Use the Assert class to test conditions
-
             var createPlayerUseCase = Container.Resolve<CreatePlayerUseCase>();
 
             Assert.IsNotNull(createPlayerUseCase);
@@ -55,8 +54,40 @@ namespace Tests
             var playerObject = GameObject.Find(player);
 
             Assert.IsNotNull(playerObject);
+        }
+
+        [UnityTest]
+        public IEnumerator ReInitializePlayerTest()
+        {
+            var createPlayerUseCase = Container.Resolve<CreatePlayerUseCase>();
+
+            Assert.IsNotNull(createPlayerUseCase);
+
+            yield return null;
+
+            var playerObject = GameObject.Find(player);
+
+            Assert.IsNotNull(playerObject);
+
+            var playerView = playerObject.GetComponent<IPlayerView>();
+
+            playerView.UpdatePosition(new Vector3(0,-3, 0));
+
+            yield return null;
+
+            playerView.UpdatePosition(new Vector3(0, -4, 0));
+
+            yield return null;
+
+            playerObject = GameObject.Find(player);
+            playerView = playerObject.GetComponent<IPlayerView>();
+
+            yield return null;
+
+            Assert.IsNotNull(playerObject);
 
             Assert.AreEqual(new Vector3(0, 1, 0), playerObject.transform.position);
+            Assert.AreEqual(new Vector3(0, 1, 0), playerView.PlayerPostion);
         }
     }
 }
