@@ -41,19 +41,23 @@ namespace Tests
             var playerViewInstance = playerPrefabFactory.Create();
             Assert.IsNotNull(playerViewInstance);
 
-            Assert.AreEqual(new Vector3(0,1,0),playerViewInstance.Tr.position);
+            Assert.AreEqual(new Vector3(0,1,0), playerViewInstance.PlayerPostion);
         }
 
         // A Test behaves as an ordinary method
-        [Test]
-        public void UpdatePositionTest()
+        [UnityTest]
+        public IEnumerator UpdatePositionTest()
         {
             var playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
             var playerViewInstance = playerPrefabFactory.Create();
             playerViewInstance.UpdatePosition(new Vector3(1,1,0));
-            Assert.AreEqual(1,playerViewInstance.Tr.position.x);
+            yield return null;
+
+            Assert.AreEqual(1,playerViewInstance.PlayerPostion.x);
             playerViewInstance.UpdatePosition(new Vector3(2,1,2));
-            Assert.AreEqual(new Vector3(2,1,2),playerViewInstance.Tr.position);
+
+            yield return null;
+            Assert.AreEqual(new Vector3(2,1,2),playerViewInstance.PlayerPostion);
         }
 
         [UnityTest]
