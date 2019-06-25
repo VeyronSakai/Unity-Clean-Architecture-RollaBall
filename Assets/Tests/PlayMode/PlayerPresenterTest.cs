@@ -51,19 +51,25 @@ namespace Tests
 
             var playerView = playerPresenter.CreatePlayer();
             Assert.IsNotNull(playerView);
-            Assert.AreEqual(new Vector3(0, 1, 0), playerPresenter.Tr.position);
-            Assert.AreEqual(new Vector3(0, 1, 0), playerView.Tr.position);
+            Assert.AreEqual(new Vector3(0, 1, 0), playerPresenter.PlayerPosition);
+            Assert.AreEqual(new Vector3(0, 1, 0), playerView.PlayerPostion);
 
             yield return null;
 
             playerPresenter.UpdatePlayerPosition(new Vector3(1, 1, 0));
-            Assert.AreEqual(new Vector3(1, 1, 0), playerPresenter.Tr.position);
-            Assert.AreEqual(new Vector3(1, 1, 0), playerView.Tr.position);
+
+            yield return null;
+
+            Assert.AreEqual(new Vector3(1, 1, 0), playerPresenter.PlayerPosition);
+            Assert.AreEqual(new Vector3(1, 1, 0), playerView.PlayerPostion);
 
             yield return null;
 
             playerPresenter.UpdatePlayerPosition(new Vector3(2, 1, 2));
-            Assert.AreEqual(new Vector3(2, 1, 2), playerPresenter.Tr.position);
+
+            yield return null;
+
+            Assert.AreEqual(new Vector3(2, 1, 2), playerPresenter.PlayerPosition);
 
             playerPresenter.DestroyPlayer();
 
