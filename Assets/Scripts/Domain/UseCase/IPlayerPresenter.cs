@@ -11,5 +11,6 @@ namespace Domain.UseCase
         IPlayerView CreatePlayer();
         void UpdatePlayerPosition(Vector3 pos);
 		void DestroyPlayer();
+        void Move(Vector3 direction);
     }
 }

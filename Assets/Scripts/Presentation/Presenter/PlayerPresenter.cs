@@ -30,5 +30,10 @@ namespace Presentation.Presenter
         {
             playerView.DestroyPlayer();
         }
+
+        public void Move(Vector3 direction)
+        {
+            playerView.Move(direction);
+        }
     }
 }
