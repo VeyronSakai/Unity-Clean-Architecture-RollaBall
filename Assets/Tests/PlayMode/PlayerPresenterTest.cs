@@ -12,6 +12,7 @@ namespace Tests
 {
     public class PlayerPresenterTest : ZenjectIntegrationTestFixture
     {
+        private string Player = "PlayerPresenter";
         [SetUp]
         public void SetUp()
         {
@@ -19,12 +20,13 @@ namespace Tests
 
             GameObject playerPrefab = new GameObject();
             playerPrefab.AddComponent<PlayerView>();
+            playerPrefab.AddComponent<Rigidbody>();
 
             Container
                 .BindIFactory<IPlayerView>()
                 .To<PlayerView>()
                 .FromComponentInNewPrefab(playerPrefab)
-                .WithGameObjectName("Player");
+                .WithGameObjectName(Player);
 
             Container
                 .Bind<IPlayerView>()
@@ -43,6 +45,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator PlayerPresenterTestSimplePasses()
         {
+            yield return null;
+
             var playerPresenter = Container.Resolve<IPlayerPresenter>();
             Assert.IsNotNull(playerPresenter);
 
@@ -50,39 +54,55 @@ namespace Tests
 
             var playerView = playerPresenter.CreatePlayer();
             Assert.IsNotNull(playerView);
-            Assert.AreEqual(new Vector3(0, 1, 0), playerPresenter.PlayerPosition);
-            Assert.AreEqual(new Vector3(0, 1, 0), playerView.PlayerPostion);
+            Assert.AreEqual(new Vector3(0.0f, 1.0f, 0.0f), playerPresenter.PlayerPosition);
+            Assert.AreEqual(new Vector3(0.0f, 1.0f, 0.0f), playerView.PlayerPostion);
 
             yield return null;
 
-            playerPresenter.UpdatePlayerPosition(new Vector3(1, 1, 0));
+            playerPresenter.UpdatePlayerPosition(new Vector3(1.0f, 1.0f, 0.0f));
 
             yield return null;
 
-            Assert.AreEqual(new Vector3(1, 1, 0), playerPresenter.PlayerPosition);
-            Assert.AreEqual(new Vector3(1, 1, 0), playerView.PlayerPostion);
+            Assert.AreEqual(new Vector3(1.0f, 1.0f, 0.0f), playerPresenter.PlayerPosition);
+            Assert.AreEqual(new Vector3(1.0f, 1.0f, 0.0f), playerView.PlayerPostion);
 
             yield return null;
 
-            playerPresenter.UpdatePlayerPosition(new Vector3(2, 1, 2));
+            playerPresenter.UpdatePlayerPosition(new Vector3(2.0f, 1.0f, 2.0f));
 
             yield return null;
 
-            Assert.AreEqual(new Vector3(2, 1, 2), playerPresenter.PlayerPosition);
+            Assert.AreEqual(new Vector3(2.0f, 1.0f, 2.0f), playerPresenter.PlayerPosition);
 
             playerPresenter.DestroyPlayer();
 
             yield return null;
 
-            var playerObject = GameObject.Find("Player");
+            var playerObject = GameObject.Find(Player);
 
             Assert.IsNull(playerObject);
 
             playerPresenter.CreatePlayer();
 
-            playerObject = GameObject.Find("Player");
+            playerObject = GameObject.Find(Player);
 
             Assert.IsNotNull(playerObject);
-       }
+        }
+
+        [UnityTest]
+        public IEnumerator MoveTest()
+        {
+            var playerPresenter = Container.Resolve<IPlayerPresenter>();
+            var playerView = playerPresenter.CreatePlayer();
+            var playerObject = GameObject.Find(Player);
+
+            yield return null;
+
+            playerView.Move(new Vector3(10, 0, 0));
+
+            yield return new WaitForSeconds(1.0f);
+
+            Assert.AreNotEqual(1, playerObject.transform.position.x);
+        }
     }
 }
