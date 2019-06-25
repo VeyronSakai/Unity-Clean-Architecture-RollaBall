@@ -13,6 +13,19 @@ namespace Domain.UseCase
             // 開始時にPlayerを生成
 
             playerPresenter.CreatePlayer();
+
+            // Playerが場外に落ちた場合、Playerを消去して、新たにPlayerを生成する
+
+            playerPresenter
+                .PlayerPositionProperty
+                .Where(pos => pos.y < -1)
+                .Subscribe(_ => ReInitializePlayer());
+        }
+
+        public void ReInitializePlayer()
+        {
+            playerPresenter.DestroyPlayer();
+            playerPresenter.CreatePlayer();
         }
     }
 
