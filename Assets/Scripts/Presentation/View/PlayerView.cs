@@ -52,6 +52,7 @@ namespace Presentation.View
         {
             rb.AddForce(direction);
         }
+
+
     }
 }
-
