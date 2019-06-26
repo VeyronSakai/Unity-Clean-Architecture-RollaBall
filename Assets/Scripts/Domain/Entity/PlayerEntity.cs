@@ -2,7 +2,11 @@
 using Zenject;
 using UniRx;
 
-public class PlayerEntity : IPlayerEntity
+namespace Domain.Entity
 {
+    public class PlayerEntity : IPlayerEntity
+    {
 
+    }
 }
+
