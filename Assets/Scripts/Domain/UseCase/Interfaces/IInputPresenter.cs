@@ -10,6 +10,11 @@ namespace Domain.UseCase
         IObservable<Unit> OnRightKeyDownAsObservable();
         IObservable<Unit> OnDownKeyDownAsObservable();
         IObservable<Unit> OnLeftKeyDownAsObservable();
+
+        IObservable<Unit> OnUpKeyUpAsObservable();
+        IObservable<Unit> OnRightKeyUpAsObservable();
+        IObservable<Unit> OnDownKeyUpAsObservable();
+        IObservable<Unit> OnLeftKeyUpAsObservable();
     }
 }
 
