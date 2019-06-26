@@ -14,18 +14,17 @@ namespace Domain.UseCase
 
             playerPresenter.CreatePlayer();
 
-            // Playerが場外に落ちた場合、Playerを消去して、新たにPlayerを生成する
-
             playerPresenter
                 .PlayerPositionProperty
                 .Where(pos => pos.y < -1)
                 .Subscribe(_ => ReInitializePlayer());
         }
 
+
         public void ReInitializePlayer()
         {
-            playerPresenter.DestroyPlayer();
-            playerPresenter.CreatePlayer();
+            // 初期位置に戻す
+            playerPresenter.ReInitializePlayer(new Vector3(0, 1, 0));
         }
     }
 
@@ -34,4 +33,3 @@ namespace Domain.UseCase
 
     }
 }
-
