@@ -63,13 +63,13 @@ namespace Tests
 
             Assert.IsNotNull(createPlayerUseCase);
 
-            yield return null;
-
             var playerObject = GameObject.Find(player);
 
             Assert.IsNotNull(playerObject);
 
             var playerView = playerObject.GetComponent<IPlayerView>();
+
+            yield return null;
 
             playerView.UpdatePosition(new Vector3(0,-3, 0));
 
