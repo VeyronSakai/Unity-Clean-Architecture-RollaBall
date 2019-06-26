@@ -11,7 +11,6 @@ namespace Tests
 {
     public class PlayerViewTest : ZenjectIntegrationTestFixture
     {
-  
         [SetUp]
         public void SetUp(){
 
