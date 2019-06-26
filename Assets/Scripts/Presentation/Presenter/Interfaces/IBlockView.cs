@@ -10,7 +10,7 @@ namespace Presentation.Presenter
     public interface IBlockView
     {
         IObservable<Unit> OnTriggerEnterPlayerAsObservable();
+        void DestroyBlock();
     }
-
 }
 

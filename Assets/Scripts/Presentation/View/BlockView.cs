@@ -12,12 +12,15 @@ namespace Presentation.View
     public class BlockView : MonoBehaviour, IBlockView
     {
         // 生成時に実行される
-        // 初めからシーン上にインスタンスが生成されていればStart時に実行される
+        // posにはFactory.Create(pos)の引数posが入る
         [Inject]
-        public void Construct()
+        public void Construct(Vector3 pos)
         {
             this.UpdateAsObservable()
                 .Subscribe(_ => RotateBlock());
+
+            // 位置を設定
+            this.transform.position = pos;
         }
 
         private void RotateBlock()
@@ -28,6 +31,11 @@ namespace Presentation.View
         public IObservable<Unit> OnTriggerEnterPlayerAsObservable()
         {
             return this.OnTriggerEnterAsObservable().Where(x => x.tag == "Player").AsUnitObservable();
+        }
+
+        public void DestroyBlock()
+        {
+            Destroy(this.gameObject);
         }
     }
 }
