@@ -3,10 +3,12 @@ using Zenject;
 using Presentation.View;
 using Presentation.Presenter;
 using Domain.UseCase;
+using Domain.Entity;
 
 public class GameSceneInstaller : MonoInstaller
 {
     [SerializeField] private PlayerView playerPrefab;
+    [SerializeField] private BlockView blockPrefab;
 
     public override void InstallBindings()
     {
@@ -42,5 +44,26 @@ public class GameSceneInstaller : MonoInstaller
         Container
             .BindInterfacesTo<MovePlayerUseCase>()
             .AsCached();
+
+        Container
+            .Bind<IBlockView>()
+            .To<BlockView>()
+            .AsCached();
+
+        Container
+            .Bind<IBlockPresenter>()
+            .To<BlockPresenter>()
+            .AsCached();
+
+        Container.BindIFactory<Vector3, IBlockView>().To<BlockView>().FromComponentInNewPrefab(blockPrefab);
+
+        Container
+            .Bind<IScoreEntity>()
+            .To<ScoreEntity>()
+            .AsCached();
+
+        Container.BindInterfacesTo<GetScoreUseCase>().AsCached();
+
+        Container.BindInterfacesTo<InitializeBlockUseCase>().AsCached();
     }
 }
