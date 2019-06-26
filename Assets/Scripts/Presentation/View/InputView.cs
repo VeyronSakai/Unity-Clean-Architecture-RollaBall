@@ -27,6 +27,26 @@ namespace Presentation.View
         {
             return Observable.EveryUpdate().Where(_ => Input.GetKeyDown(KeyCode.LeftArrow)).AsUnitObservable();
         }
+
+        public IObservable<Unit> OnUpKeyUpAsObservable()
+        {
+            return Observable.EveryUpdate().Where(_ => Input.GetKeyUp(KeyCode.UpArrow)).AsUnitObservable();
+        }
+
+        public IObservable<Unit> OnRightKeyUpAsObservable()
+        {
+            return Observable.EveryUpdate().Where(_ => Input.GetKeyUp(KeyCode.RightArrow)).AsUnitObservable();
+        }
+
+        public IObservable<Unit> OnDownKeyUpAsObservable()
+        {
+            return Observable.EveryUpdate().Where(_ => Input.GetKeyUp(KeyCode.DownArrow)).AsUnitObservable();
+        }
+
+        public IObservable<Unit> OnLeftKeyUpAsObservable()
+        {
+            return Observable.EveryUpdate().Where(_ => Input.GetKeyUp(KeyCode.LeftArrow)).AsUnitObservable();
+        }
     }
 }
 
