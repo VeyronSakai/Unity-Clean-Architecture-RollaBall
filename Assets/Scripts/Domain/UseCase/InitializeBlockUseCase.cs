@@ -15,6 +15,10 @@ namespace Domain.UseCase
             blockPresenter.InstantiateBlock(new Vector3(0, 1, -3));
             blockPresenter.InstantiateBlock(new Vector3(3, 1, 0));
             blockPresenter.InstantiateBlock(new Vector3(-3, 1, 0));
+            blockPresenter.InstantiateBlock(new Vector3(1.5f, 1, 1.5f));
+            blockPresenter.InstantiateBlock(new Vector3(1.5f, 1, -1.5f));
+            blockPresenter.InstantiateBlock(new Vector3(-1.5f, 1, -1.5f));
+            blockPresenter.InstantiateBlock(new Vector3(-1.5f, 1, 1.5f));
         }
     }
 
@@ -22,6 +26,4 @@ namespace Domain.UseCase
     {
 
     }
-
-
 }
