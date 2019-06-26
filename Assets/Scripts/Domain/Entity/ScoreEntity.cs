@@ -3,7 +3,7 @@ using UniRx;
 
 namespace Domain.Entity
 {
-    public class ScoreEntity
+    public class ScoreEntity : IScoreEntity
     {
         private ReactiveProperty<int> _scoreProperty;
         public IReadOnlyReactiveProperty<int> ScoreProperty => _scoreProperty;
