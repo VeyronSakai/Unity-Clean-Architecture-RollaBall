@@ -28,5 +28,19 @@ public class GameSceneInstaller : MonoInstaller
         Container
             .BindInterfacesTo<CreatePlayerUseCase>()
             .AsCached();
+
+        Container
+            .Bind<IInputView>()
+            .To<InputView>()
+            .AsCached();
+
+        Container
+            .Bind<IInputPresenter>()
+            .To<InputPresenter>()
+            .AsCached();
+
+        Container
+            .BindInterfacesTo<MovePlayerUseCase>()
+            .AsCached();
     }
 }
