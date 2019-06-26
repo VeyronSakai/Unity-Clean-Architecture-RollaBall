@@ -50,7 +50,7 @@ namespace Presentation.View
         // プレイヤーに力を加えて移動させる
         public void Move(Vector3 direction)
         {
-            rb.AddForce(direction);
+            rb.AddForce(direction * 10);
         }
     }
 }
