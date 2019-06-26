@@ -21,14 +21,9 @@ namespace Presentation.Presenter
             return playerView;
         }
 
-        public void UpdatePlayerPosition(Vector3 pos)
+        public void ReInitializePlayer(Vector3 pos)
         {
-            playerView.UpdatePosition(pos);
-        }
-
-        public void DestroyPlayer()
-        {
-            playerView.DestroyPlayer();
+            playerView.ReInitializePlayer(pos);
         }
 
         public void Move(Vector3 direction)

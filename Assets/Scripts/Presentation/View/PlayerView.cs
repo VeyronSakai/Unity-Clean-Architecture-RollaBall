@@ -23,11 +23,12 @@ namespace Presentation.View
         private void Construct()
         {
             tr = this.GetComponent<Transform>();
-            UpdatePosition(new Vector3(0, 1, 0));
 
             rb = this.GetComponent<Rigidbody>();
 
-            _playerPositionProperty = new ReactiveProperty<Vector3>(new Vector3(0, 1, 0));
+			ReInitializePlayer(new Vector3(0, 1, 0));
+
+			_playerPositionProperty = new ReactiveProperty<Vector3>(new Vector3(0, 1, 0));
 
             // 毎フレーム、ReactivePropertyを更新
             this.UpdateAsObservable()
@@ -36,16 +37,13 @@ namespace Presentation.View
                 });
         }
 
-        //Transformの更新
-        public void UpdatePosition(Vector3 pos)
+        // Playerの再初期化
+        public void ReInitializePlayer(Vector3 pos)
         {
             tr.position = pos;
         }
 
-        public void DestroyPlayer()
-        {
-            Destroy(this.gameObject);
-        }
+
 
         // プレイヤーに力を加えて移動させる
         public void Move(Vector3 direction)

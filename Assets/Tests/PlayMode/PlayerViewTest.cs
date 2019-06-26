@@ -50,31 +50,14 @@ namespace Tests
         {
             var playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
             var playerViewInstance = playerPrefabFactory.Create();
-            playerViewInstance.UpdatePosition(new Vector3(1,1,0));
+            playerViewInstance.ReInitializePlayer(new Vector3(1,1,0));
             yield return null;
 
             Assert.AreEqual(1,playerViewInstance.PlayerPostion.x);
-            playerViewInstance.UpdatePosition(new Vector3(2,1,2));
+            playerViewInstance.ReInitializePlayer(new Vector3(2,1,2));
 
             yield return null;
             Assert.AreEqual(new Vector3(2,1,2),playerViewInstance.PlayerPostion);
-        }
-
-        [UnityTest]
-        public IEnumerator DestroyPlayerTest()
-        {
-            var playerPrefabFactory = Container.Resolve<IFactory<IPlayerView>>();
-            var playerViewInstance = (PlayerView)playerPrefabFactory.Create();
-            Assert.IsNotNull(playerViewInstance);
-
-            yield return null;
-
-            playerViewInstance.DestroyPlayer();
-
-            yield return null;
-
-            var playerObject = GameObject.Find("Player");
-            Assert.IsNull(playerObject);
         }
     }
 }

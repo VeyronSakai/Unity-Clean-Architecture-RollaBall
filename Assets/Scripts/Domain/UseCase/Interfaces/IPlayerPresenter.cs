@@ -9,8 +9,7 @@ namespace Domain.UseCase
         Vector3 PlayerPosition { get; }
         IReadOnlyReactiveProperty<Vector3> PlayerPositionProperty { get; }
         IPlayerView CreatePlayer();
-        void UpdatePlayerPosition(Vector3 pos);
-		void DestroyPlayer();
+        void ReInitializePlayer(Vector3 pos);
         void Move(Vector3 direction);
     }
 }

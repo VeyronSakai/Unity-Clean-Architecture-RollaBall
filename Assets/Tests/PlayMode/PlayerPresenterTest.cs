@@ -61,7 +61,7 @@ namespace Tests
 
             yield return null;
 
-            playerPresenter.UpdatePlayerPosition(new Vector3(1.0f, 1.0f, 0.0f));
+            playerPresenter.ReInitializePlayer(new Vector3(1.0f, 1.0f, 0.0f));
 
             yield return null;
 
@@ -70,23 +70,15 @@ namespace Tests
 
             yield return null;
 
-            playerPresenter.UpdatePlayerPosition(new Vector3(2.0f, 1.0f, 2.0f));
+            playerPresenter.ReInitializePlayer(new Vector3(2.0f, 1.0f, 2.0f));
 
             yield return null;
 
             Assert.AreEqual(new Vector3(2.0f, 1.0f, 2.0f), playerPresenter.PlayerPosition);
 
-            playerPresenter.DestroyPlayer();
-
             yield return null;
 
             var playerObject = GameObject.Find(Player);
-
-            Assert.IsNull(playerObject);
-
-            playerPresenter.CreatePlayer();
-
-            playerObject = GameObject.Find(Player);
 
             Assert.IsNotNull(playerObject);
         }

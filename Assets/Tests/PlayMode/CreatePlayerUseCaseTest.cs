@@ -71,11 +71,11 @@ namespace Tests
 
             yield return null;
 
-            playerView.UpdatePosition(new Vector3(0,-3, 0));
+            playerView.ReInitializePlayer(new Vector3(0,-3, 0));
 
             yield return null;
 
-            playerView.UpdatePosition(new Vector3(0, -4, 0));
+            playerView.ReInitializePlayer(new Vector3(0, -4, 0));
 
             yield return null;
 
