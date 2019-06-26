@@ -3,7 +3,6 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
-
 namespace Presentation.Presenter
 {
     public interface IInputView
