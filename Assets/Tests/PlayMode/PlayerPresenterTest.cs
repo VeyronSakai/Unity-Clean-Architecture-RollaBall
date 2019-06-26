@@ -13,14 +13,21 @@ namespace Tests
     public class PlayerPresenterTest : ZenjectIntegrationTestFixture
     {
         private string Player = "PlayerPresenter";
+
         [SetUp]
         public void SetUp()
+        {
+            
+        }
+
+        // A Test behaves as an ordinary method
+        [UnityTest]
+        public IEnumerator PlayerPresenterTestSimplePasses()
         {
             PreInstall();
 
             GameObject playerPrefab = new GameObject();
             playerPrefab.AddComponent<PlayerView>();
-            playerPrefab.AddComponent<Rigidbody>();
 
             Container
                 .BindIFactory<IPlayerView>()
@@ -39,12 +46,7 @@ namespace Tests
                 .AsCached();
 
             PostInstall();
-        }
 
-        // A Test behaves as an ordinary method
-        [UnityTest]
-        public IEnumerator PlayerPresenterTestSimplePasses()
-        {
             yield return null;
 
             var playerPresenter = Container.Resolve<IPlayerPresenter>();
@@ -92,6 +94,30 @@ namespace Tests
         [UnityTest]
         public IEnumerator MoveTest()
         {
+            PreInstall();
+
+            GameObject playerPrefab = new GameObject();
+            playerPrefab.AddComponent<PlayerView>();
+            playerPrefab.AddComponent<Rigidbody>();
+
+            Container
+                .BindIFactory<IPlayerView>()
+                .To<PlayerView>()
+                .FromComponentInNewPrefab(playerPrefab)
+                .WithGameObjectName(Player);
+
+            Container
+                .Bind<IPlayerView>()
+                .To<PlayerView>()
+                .AsTransient();
+
+            Container
+                .Bind<IPlayerPresenter>()
+                .To<PlayerPresenter>()
+                .AsCached();
+
+            PostInstall();
+
             var playerPresenter = Container.Resolve<IPlayerPresenter>();
             var playerView = playerPresenter.CreatePlayer();
             var playerObject = GameObject.Find(Player);
