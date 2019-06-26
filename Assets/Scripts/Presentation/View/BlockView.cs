@@ -5,10 +5,11 @@ using Zenject;
 using UniRx;
 using UniRx.Triggers;
 using System;
+using Presentation.Presenter;
 
 namespace Presentation.View
 {
-    public class BlockView : MonoBehaviour
+    public class BlockView : MonoBehaviour, IBlockView
     {
         // 生成時に実行される
         // 初めからシーン上にインスタンスが生成されていればStart時に実行される
@@ -26,7 +27,7 @@ namespace Presentation.View
 
         public IObservable<Unit> OnTriggerEnterPlayerAsObservable()
         {
-            return this.OnTriggerEnterAsObservable().Where(trigger => trigger.tag == "Player").AsUnitObservable();
+            return this.OnTriggerEnterAsObservable().Where(x => x.tag == "Player").AsUnitObservable();
         }
     }
 }
