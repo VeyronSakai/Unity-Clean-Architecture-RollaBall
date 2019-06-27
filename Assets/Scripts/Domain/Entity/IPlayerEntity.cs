@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using UniRx;
 
-public interface IPlayerEntity
+namespace Domain.Entity
 {
+    public interface IPlayerEntity
+    {
+
+    }
 
 }
