@@ -44,9 +44,9 @@ Viewの管理を担当 (management of the views)
 
 内部データを担当 (managing the internal data)
 
-- 各オブジェクトの状態をSubjectで管理する 
-- 内部データをReactivePropertyで管理する
-- ReactivePropertyを更新したり、SubjectにOnNextしたりOnCompleteするためのメソッドを持つ
+- 各オブジェクトの状態をSubjectで管理する  (managing the object state in Subject)
+- 内部データをReactivePropertyで管理する (managing the internal data in ReactiveProperty)
+- ReactivePropertyを更新したり、SubjectにOnNextしたりOnCompleteするためのメソッドを持つ (Updating ReactiveProperty)
 
 ## 使用ライブラリ(Used Library)
 
