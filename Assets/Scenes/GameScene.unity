@@ -790,3 +790,4 @@ MonoBehaviour:
     type: 3}
   blockPrefab: {fileID: 7285039968080843138, guid: fbc43a87dbae84d1fb2efdfec45be082,
     type: 3}
+  scoreView: {fileID: 1545060911}

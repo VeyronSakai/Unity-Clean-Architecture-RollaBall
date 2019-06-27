@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Presentation.Presenter;
 using TMPro;
+using Zenject;
 
 namespace Presentation.View
 {
@@ -10,7 +11,7 @@ namespace Presentation.View
     {
         private TextMeshProUGUI textMeshPro;
 
-        private void Start()
+        private void Awake()
         {
             textMeshPro = this.GetComponent<TextMeshProUGUI>();
         }
