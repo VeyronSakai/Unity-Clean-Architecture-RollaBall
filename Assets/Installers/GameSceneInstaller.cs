@@ -55,15 +55,24 @@ public class GameSceneInstaller : MonoInstaller
             .To<BlockPresenter>()
             .AsCached();
 
-        Container.BindIFactory<Vector3, IBlockView>().To<BlockView>().FromComponentInNewPrefab(blockPrefab);
+        Container
+            .BindIFactory<Vector3, IBlockView>()
+            .To<BlockView>()
+            .FromComponentInNewPrefab(blockPrefab);
 
         Container
             .Bind<IScoreEntity>()
             .To<ScoreEntity>()
             .AsCached();
 
-        Container.BindInterfacesTo<GetScoreUseCase>().AsCached();
+        // UseCaseをBindする順序(UseCaseを生成する順序)に注意
+        // InitializeBlockUseCaseのInitializeが行われてから、GetScoreUseCaseのInitializeが行われなければいけない
+        Container
+            .BindInterfacesTo<InitializeBlockUseCase>()
+            .AsCached();
 
-        Container.BindInterfacesTo<InitializeBlockUseCase>().AsCached();
+        Container
+            .BindInterfacesTo<GetScoreUseCase>()
+            .AsCached();
     }
 }
