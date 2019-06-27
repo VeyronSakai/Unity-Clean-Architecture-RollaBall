@@ -15,36 +15,36 @@ I made `Roll a Ball` by using Clean Architecture in Unity.
 This project doesn't use Translator, Repository, DataStore and Structure. 
 
 
-### Viewの役割
+### Viewの役割 (Role of View)
 
-シーンに現れるオブジェクトの管理を担当
+シーンに現れるオブジェクトの管理を担当 (management of the objects appearing in the scene)
 
-- インスペクタビューに表示される情報の管理
-- それらの情報の更新
-- それらの情報の初期化
+- インスペクタビューに表示される情報の管理 (management of the information of the inspector)
+- それらの情報の更新 (update of those information)
+- それらの情報の初期化 (initialization of those information)
 
-### Presenterの役割
+### Presenterの役割 (Role of Presenter)
 
-一言で言うとViewの管理を担当
+Viewの管理を担当 (management of the views)
 
-- Viewのトリガーをまとめて、IObservableを返すメソッドを各々のトリガーに対して作る。
-- (Factoryを用いて)Viewオブジェクトの生成、を扱うメソッドを持つ。
-- 複数のViewインスタンスを管理するためのリストを持つ。
-
-
-### UseCaseの役割
-
-ビジネスロジックを担当
-
-- IInitializableを継承し、Initializeメソッド内で初期化処理を行う。
-- Initialize内でEntityやViewのSubjectやReactivePropertyをSubscribeする。
+- Viewのトリガーをまとめて、IObservableを返すメソッドを各々のトリガーに対して作る。 (making the methods returning IObservable for triggers of the views)
+- (Factoryを用いて)Viewオブジェクトの生成、を扱うメソッドを持つ。 ((By using Factory) having methods to create view objects)
+- 複数のViewインスタンスを管理するためのリストを持つ。 (having the lists which manage multiple views)
 
 
-### Entityの役割
+### UseCaseの役割 (Role of UseCase)
 
-内部データを担当
+ビジネスロジックを担当 (bisiness logic)
 
-- 各オブジェクトの状態をSubjectで管理する
+- IInitializableを継承し、Initializeメソッド内で初期化処理を行う。(initializing in Initialize method)
+- Initialize内でEntityやViewのSubjectやReactivePropertyをSubscribeする。 (subscribing Subject and ReactiveProperty in Initialize method)
+
+
+### Entityの役割 (Role of Entity)
+
+内部データを担当 (managing the internal data)
+
+- 各オブジェクトの状態をSubjectで管理する 
 - 内部データをReactivePropertyで管理する
 - ReactivePropertyを更新したり、SubjectにOnNextしたりOnCompleteするためのメソッドを持つ
 
