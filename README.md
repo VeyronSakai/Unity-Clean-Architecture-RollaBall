@@ -7,6 +7,7 @@ I made `Roll a Ball` by using Clean Architecture in Unity.
 ![gif](https://github.com/VeyronSakai/RollaBall_CleanArchitecture/blob/master/Assets/RollABall.gif)
 
 
+![ClassDiagram](https://github.com/VeyronSakai/RollaBall_CleanArchitecture/blob/master/Assets/ClassDiagram.png)
 
 ## 使用ライブラリ(Used Library)
 
