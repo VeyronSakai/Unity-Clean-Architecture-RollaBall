@@ -2,6 +2,10 @@
 using Zenject;
 using Domain.Entity;
 using UniRx;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System;
 
 namespace Domain.UseCase
 {
@@ -12,39 +16,30 @@ namespace Domain.UseCase
 
         void IInitializable.Initialize()
         {
-            // for文を使うと何故かエラーになってしまう
-            blockPresenter.OnTriggerEnterPlayerAsObservable(0).Subscribe(_ => {
-                blockPresenter.BlockList[0].DestroyBlock();
+            // ブロックに衝突した時の処理
+
+            // for文ではなくLINQを使うと何故か上手くいく
+            Enumerable
+                .Range(0, blockPresenter.BlockList.Count)
+                .ToList()
+                .ForEach(i => PlayerEnterBlockTrigger(i));
+
+            //// このようにfor文で書き直すと何故かエラーになる
+            //for(int i = 0; i < blockPresenter.BlockList.Count; i++)
+            //{
+            //    blockPresenter.BlockList[i].DestroyBlock();
+            //    scoreEntity.Increment();
+            //}
+        }
+
+        private void PlayerEnterBlockTrigger(int i)
+        {
+            blockPresenter.OnTriggerEnterPlayerAsObservable(i).Subscribe(_ =>
+            {
+                blockPresenter.BlockList[i].DestroyBlock();
                 scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(1).Subscribe(_ => {
-                blockPresenter.BlockList[1].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(2).Subscribe(_ => {
-                blockPresenter.BlockList[2].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(3).Subscribe(_ => {
-                blockPresenter.BlockList[3].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(4).Subscribe(_ => {
-                blockPresenter.BlockList[4].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(5).Subscribe(_ => {
-                blockPresenter.BlockList[5].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(6).Subscribe(_ => {
-                blockPresenter.BlockList[6].DestroyBlock();
-                scoreEntity.Increment();
-                });
-            blockPresenter.OnTriggerEnterPlayerAsObservable(7).Subscribe(_ => {
-                blockPresenter.BlockList[7].DestroyBlock();
-                scoreEntity.Increment();
-                });
+                Debug.Log(scoreEntity.ScoreProperty.Value);
+            });
         }
     }
 
