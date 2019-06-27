@@ -14,6 +14,40 @@ I made `Roll a Ball` by using Clean Architecture in Unity.
 
 This project doesn't use Translator, Repository, DataStore and Structure. 
 
+
+### Viewの役割
+
+シーンに現れるオブジェクトの管理を担当
+
+- インスペクタビューに表示される情報の管理
+- それらの情報の更新
+- それらの情報の初期化
+
+### Presenterの役割
+
+一言で言うとViewの管理を担当
+
+- Viewのトリガーをまとめて、IObservableを返すメソッドを各々のトリガーに対して作る。
+- (Factoryを用いて)Viewオブジェクトの生成、を扱うメソッドを持つ。
+- 複数のViewインスタンスを管理するためのリストを持つ。
+
+
+### UseCaseの役割
+
+ビジネスロジックを担当
+
+- IInitializableを継承し、Initializeメソッド内で初期化処理を行う。
+- Initialize内でEntityやViewのSubjectやReactivePropertyをSubscribeする。
+
+
+### Entityの役割
+
+内部データを担当
+
+- 各オブジェクトの状態をSubjectで管理する
+- 内部データをReactivePropertyで管理する
+- ReactivePropertyを更新したり、SubjectにOnNextしたりOnCompleteするためのメソッドを持つ
+
 ## 使用ライブラリ(Used Library)
 
 - [Unity](https://unity.com) 2019 1.6f1 (c) Unity Technologies ApS.
