@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Domain.UseCase;
 using Zenject;
 using UniRx;
 using UniRx.Triggers;
+using Domain.UseCase;
 
 namespace Presentation.Presenter
 {
@@ -12,16 +12,21 @@ namespace Presentation.Presenter
     {
         [Inject] private IFactory<Vector3, IBlockView> blockViewFactory;
 
-        private List<IBlockView> blockList = new List<IBlockView>();
+        public List<IBlockView> BlockList { get; set; } = new List<IBlockView>();
 
         public void InstantiateBlock(Vector3 pos)
         {
-            blockList.Add(blockViewFactory.Create(pos));
+            BlockList.Add(blockViewFactory.Create(pos));
         }
 
         public IObservable<Unit> OnTriggerEnterPlayerAsObservable(int i)
         {
-            return blockList[i].OnTriggerEnterPlayerAsObservable();
+            return BlockList[i].OnTriggerEnterPlayerAsObservable();
+        }
+
+        public void DestroyBlock(int i)
+        {
+            BlockList[i].DestroyBlock();
         }
     }
 }
