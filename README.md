@@ -6,8 +6,13 @@ I made `Roll a Ball` by using Clean Architecture in Unity.
 
 ![gif](https://github.com/VeyronSakai/RollaBall_CleanArchitecture/blob/master/Assets/RollABall.gif)
 
+## おおまかなクラス図(Rough Class Diagram)
 
 ![ClassDiagram](https://github.com/VeyronSakai/RollaBall_CleanArchitecture/blob/master/Assets/ClassDiagram.png)
+
+このプロジェクトではTranslator,Repository,DataStore,Structureは使っていません。
+
+This project doesn't use Translator, Repository, DataStore and Structure. 
 
 ## 使用ライブラリ(Used Library)
 
