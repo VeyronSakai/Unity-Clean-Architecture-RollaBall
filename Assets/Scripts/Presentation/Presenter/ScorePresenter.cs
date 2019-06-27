@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Domain.UseCase;
 
 namespace Presentation.Presenter
 {
-    public class ScorePresenter
+    public class ScorePresenter : IScorePresenter
     {
         [Inject] private IScoreView scoreView;
 
