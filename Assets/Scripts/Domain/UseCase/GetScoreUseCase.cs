@@ -38,7 +38,6 @@ namespace Domain.UseCase
             {
                 blockPresenter.BlockList[i].DestroyBlock();
                 scoreEntity.Increment();
-                Debug.Log(scoreEntity.ScoreProperty.Value);
             });
         }
     }
