@@ -9,6 +9,7 @@ public class GameSceneInstaller : MonoInstaller
 {
     [SerializeField] private PlayerView playerPrefab;
     [SerializeField] private BlockView blockPrefab;
+    [SerializeField] private ScoreView scoreView;
 
     public override void InstallBindings()
     {
@@ -73,6 +74,17 @@ public class GameSceneInstaller : MonoInstaller
 
         Container
             .BindInterfacesTo<GetScoreUseCase>()
+            .AsCached();
+
+        Container.BindInterfacesTo<ScoreView>().FromInstance(scoreView).AsCached();
+
+        Container
+            .Bind<IScorePresenter>()
+            .To<ScorePresenter>()
+            .AsCached();
+
+        Container
+            .BindInterfacesTo<UpdateScoreUseCase>()
             .AsCached();
     }
 }
