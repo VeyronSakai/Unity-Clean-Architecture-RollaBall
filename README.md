@@ -18,3 +18,5 @@ I made `Roll a Ball` by using Clean Architecture in Unity.
 ## 参考(Reference)
 
 - cafu_sample Copyright (c) 2018 Tetsuya Mori
+
+- cafu_core Copyright (c) 2017-2018 Tetsuya Mori
