@@ -1,4 +1,4 @@
-# RollaBall_CleanArchitecture
+# Unity-Clean-Architecture-RollaBall
 
 Unityでクリーンアーキテクチャを使ってRoll a Ballを作ってみました。
 
